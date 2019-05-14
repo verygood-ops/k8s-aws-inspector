@@ -1,0 +1,32 @@
+apiVersion: v1
+entries:
+  aws-inspector:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2019-05-14T01:15:58.312504+03:00
+    description: A Helm chart for Kubernetes
+    digest: 3fe6bcabec67605a65d2465f25f7550815927d4c0c75562b4bcfbeb14d770b79
+    name: aws-inspector
+    urls:
+    - aws-inspector-0.1.tgz
+    version: "0.1"
+  pod-aws-inspector:
+  - apiVersion: v1
+    appVersion: "1.1"
+    created: 2019-05-14T01:15:58.313367+03:00
+    description: A Helm chart for Kubernetes
+    digest: c0f3bf2931e10a7260c74557376944889f2a796044e023afbfe2c72cb3ee9d9c
+    name: pod-aws-inspector
+    urls:
+    - pod-aws-inspector-0.2.tgz
+    version: "0.2"
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2019-05-14T01:15:58.313078+03:00
+    description: A Helm chart for Kubernetes
+    digest: 455646abe55469eeb69d18b0c47cbddaf23041dd36929f7d756433cc4ae3e9a3
+    name: pod-aws-inspector
+    urls:
+    - pod-aws-inspector-0.1.tgz
+    version: "0.1"
+generated: 2019-05-14T01:15:58.311382+03:00

@@ -1,0 +1,76 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: "{{ .Values.namespace }}-{{ .Values.app }}"
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: "{{ .Values.namespace }}-{{ .Values.app }}"
+      release: {{ .Values.namespace }}
+  template:
+    metadata:
+      labels:
+        app: "{{ .Values.namespace }}-{{ .Values.app }}"
+        release: {{ .Values.namespace }}
+      annotations:
+        iam.amazonaws.com/role: {{ .Values.kiamRole }}
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                {{- range $e := .Values.nodes }}
+                - {{ $e }}
+                {{- end }}
+      containers:
+      - name: "{{ .Values.namespace }}-{{ .Values.app }}"
+        image: quay.io/verygoodsecurity/{{ .Values.namespace }}:{{ .Values.image.tag }}
+        imagePullPolicy: IfNotPresent
+        command: [{{ "/bin/sh" | quote }}, {{ "-c" | quote }}]
+        #[{{ "/usr/sbin/init" | quote }}]
+        args: [{{ default "/root/generate.sh" .Values.args | quote }}]
+        volumeMounts:
+        - mountPath: /root/.aws/config
+          name: config-volume
+          subPath: config
+        - mountPath: /root/generate.sh
+          name: script
+          subPath: push.sh
+        - name: varlog
+          mountPath: /var/log
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+        - name: cgroup
+          mountPath: /sys/fs/cgroup
+          readOnly: true
+      volumes:
+      - configMap:
+          defaultMode: 0666
+          items:
+          - key: aws-profile-config
+            path: config
+          name: aws-cli-tools-config-{{ .Values.app }}
+        name: config-volume
+      - configMap:
+          defaultMode: 0777
+          items:
+          - key: script
+            path: push.sh
+          name: aws-cli-tools-config-{{ .Values.app }}
+        name: script
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: cgroup
+        hostPath:
+          path: /sys/fs/cgroup

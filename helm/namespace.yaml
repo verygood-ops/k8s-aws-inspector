@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pod-aws-inspector
+  annotations:
+    iam.amazonaws.com/permitted: .*

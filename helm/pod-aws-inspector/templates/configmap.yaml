@@ -1,0 +1,22 @@
+---
+# Configure our AWS CLI client for pushing to S3
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-cli-tools-config-{{ .Values.app }}
+  namespace: "{{ .Values.namespace}}"
+data:
+  aws-profile-config: |
+      [default]
+      region = {{ .Values.region }}
+  script: |
+      #!/usr/bin/env bash
+
+      echo "[default]
+      role_arn = {{ .Values.assumeRole }}
+      credential_source = Ec2InstanceMetadata
+      " > ~/.aws/credentials;
+
+      bash /usr/local/bin/entrypoint.sh
+      /etc/init.d/awsagent start
+      /etc/init.d/awsagent status
