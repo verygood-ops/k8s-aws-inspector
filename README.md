@@ -19,7 +19,7 @@ cd k8s-aws-inspector;
 
 ## Upgrade installed Chart
 ```
-cd verygood.charts;
+cd k8s-aws-inspector;
 ops/helm-package.sh; helm upgrade $APP_NAME -f helm/$APP_NAME/values.yaml charts/$APP_NAME-$APP_VERSION.tgz
 ```
 
