@@ -1,0 +1,14 @@
+image:
+  tag: 0.4
+
+kiamRole: arn:aws:iam::<clientID>:role/<kiamRoleName>
+
+namespace: pod-aws-inspector
+app: awsagent
+
+region: us-west-2
+assumeRole: arn:aws:iam::<clienID>:role/<assumeRoleName>
+args: "/root/generate.sh; while true; do sleep 280000; done;"
+
+nodes:
+  - <nodes>
