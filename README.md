@@ -1,7 +1,7 @@
 ## k8s-aws-inspector
-This project helps to run the AWSAgent in k8s as a daemonset.
+This project helps to run the AWSAgent in k8s as a daemon set.
 
-## awsagent as a geamon set in k8s
+## awsagent as a daemon set in k8s
 You can find more about awsagent and AWS Inspector in the user guide by this link: https://docs.aws.amazon.com/inspector/latest/userguide/inspector_introduction.html.
 
 ## Build image, publishing 
@@ -38,7 +38,7 @@ helm list -a
 ```
 
 ## Misc
-These app runs in root of the project dir.
+This app runs in the root of the project dir.
 The deployment script will create the namespace or you can create it by the: `kubectl create -f helm/namespace.yaml`.
 
 
