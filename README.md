@@ -4,7 +4,8 @@ This project helps to run the AWSAgent in k8s as a daemonset.
 ## awsagent as a geamon set in k8s
 You can find more about awsagent and AWS Inspector in the user guide by this link: https://docs.aws.amazon.com/inspector/latest/userguide/inspector_introduction.html.
 
-## Build image and publishing in on Quay registery the tag and namespace should be filled in ./charts/k8s-aws-inspector/values.yaml
+## Build image, publishing 
+To build the image and publishing it on Quay registry, the tag and namespace should be filled in ./charts/k8s-aws-inspector/values.yaml
 ```
 cd k8s-aws-inspector;
 . ops/env.sh; ops/docker-build.sh; ops/docker-stage.sh
