@@ -49,4 +49,8 @@ helm status $NS_NAME
 
 ## ---
 The result is the root`\` and core from CoreOS(node-k8s) are not supportable because of last is encrypted, but we only used the Amazon Linux as the image in docker.
-And finally, possible it only supports `Network Reachability-1.1`, ``
+And finally, possible it only supports `Network Reachability-1.1`,.
+
+##  
+If we still want to use the CoreOS possible next step is to dive into the project by the link below:
+https://gist.github.com/jwieringa/9c8879d8c136979ef8e75a7aa05a3195
