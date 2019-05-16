@@ -2,7 +2,13 @@
 This project helps to run the AWSAgent in k8s as a daemon set, test project.
 
 ## awsagent as a daemon set in k8s
-You can find more about awsagent and AWS Inspector in the user guide by this link: https://docs.aws.amazon.com/inspector/latest/userguide/inspector_introduction.html.
+You can find more about awsagent and AWS Inspector in the user guide by this link: https://docs.aws.amazon.com/inspector/latest/userguide/
+inspector_introduction.html.
+
+## usage
+```
+k exec $NS_NAME-awsagent-xccb6 -n $NS_NAME /etc/init.d/awsagent status
+```
 
 ## Build image, publishing 
 To build the image and publishing it on Quay registry, the tag and namespace should be filled in ./charts/k8s-aws-inspector/values.yaml
@@ -13,12 +19,12 @@ cd k8s-aws-inspector;
 ## Installing the Chart
 ```
 cd k8s-aws-inspector;
-./ops/helm-package.sh; helm install charts/$APP_NAME-$APP_VERSION.tgz --name $APP_NAME --namespace=$APP_NAME -f helm/$APP_NAME/values.yaml
+./ops/helm-package.sh; helm install charts/$NS_NAME-$APP_VERSION.tgz --name $NS_NAME --namespace=$NS_NAME -f helm/$NS_NAME/values.yaml
 ```
 ## Upgrade installed Chart
 ```
 cd k8s-aws-inspector;
-ops/helm-package.sh; helm upgrade $APP_NAME -f helm/$APP_NAME/values.yaml charts/$APP_NAME-$APP_VERSION.tgz
+ops/helm-package.sh; helm upgrade $NS_NAME -f helm/$NS_NAME/values.yaml charts/$NS_NAME-$APP_VERSION.tgz
 ```
 ## Delete Chart
 ```
@@ -38,7 +44,7 @@ The deployment script will create the namespace or you can create it by the: `ku
 
 To get the the deployment status.
 ```
-helm status $APP_NAME 
+helm status $NS_NAME 
 ```
 
 ## ---
