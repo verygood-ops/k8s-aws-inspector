@@ -28,7 +28,7 @@ ops/helm-package.sh; helm upgrade $NS_NAME -f helm/$NS_NAME/values.yaml charts/$
 ```
 ## Delete Chart
 ```
-helm delete --purge $APP_NAME;
+helm delete --purge $NS_NAME;
 ```
 ## List deployed Charts
 ```
