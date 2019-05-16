@@ -47,3 +47,6 @@ To get the the deployment status.
 helm status $APP_NAME 
 ```
 
+the result is the root`\` and core from CoreOS(node-k8s) are not supportable because of last is encrypted, but we only used the Amazon Linux as the image in docker.
+And finally, possible it only supports `Network Reachability-1.1`, `` 
+
